@@ -1,18 +1,18 @@
-# images_resizer - A tool for resizing images in Go
+# images_resizer
+A tool for downsizing images in Go (golang).
 
 Description:
 ------------
 
-A tool for downsizing images in Go.
-Supported formats of images: `jpeg`, `png`, `gif`.
+Supported formats of images: `jpeg`, `png`, `gif`.  
 Uses simple average color from 2x2 pixel block for smoothing.
 
-Inside Go source file there are 3 functions: 
+Inside Go source file there are 3 functions:  
 `resizeImages`, `asyncResizeImages` and `workersPoolResizeImages`
 
-1) `resizeImages` - simply resizes images one by one. The slowest function. Consumes the least amount of memory.
-2) `asyncResizeImages` - uses a goroutine for each image, i.e. spawns `len(imageFiles)` goroutines. This is the fastest (according to my profiling), but most memory consuming function.
-3) `workersPoolResizeImages` - this function uses pool of workers to run several `workersNum` concurrent `resizeImage` functions. It is just a little bit slower than `asyncResizeImages` function, but consumes limited amount of memory (depends on images' size).
+1. `resizeImages` - simply resizes images one by one. The slowest function. Consumes the least amount of memory.
+2. `asyncResizeImages` - uses a goroutine for each image, i.e. spawns `len(imageFiles)` goroutines. This is the fastest (according to my profiling), but most memory consuming function.
+3. `workersPoolResizeImages` - this function uses pool of workers to run several `workersNum` concurrent `resizeImage` functions. It is just a little bit slower than `asyncResizeImages` function, but consumes limited amount of memory (depends on images' size).
 
 Now the tool uses `workersPoolResizeImages` function.
 
